@@ -14,6 +14,7 @@ import {
   Right
 } from "native-base";
 import styles from "./styles";
+import ServerName from "../../../ServerName";
 import { FlatList, ActivityIndicator, View, TouchableWithoutFeedback, AsyncStorage  } from 'react-native';
 
 class Riwayat extends Component {
@@ -27,7 +28,7 @@ class Riwayat extends Component {
         this.setState({ id: result });
       }
       
-      return fetch('http://192.168.43.229/ciDamkar/React/riwayat_laporan/'+result)
+      return fetch(ServerName.name+'React/riwayat_laporan/'+result)
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -62,8 +63,6 @@ class Riwayat extends Component {
                 </View>
             </Content>
         </Container>
-          
-          
         )
       }
     

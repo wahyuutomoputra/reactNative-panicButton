@@ -14,9 +14,10 @@ import {
   Form,
   Text
 } from "native-base";
-import { TouchableHighlight, View, AsyncStorage } from "react-native";
+import { TouchableHighlight, View, AsyncStorage, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { NavigationActions, StackActions  } from 'react-navigation';
+import ServerName from "../../ServerName";
 
 
 class LoginView extends Component {
@@ -31,7 +32,8 @@ class LoginView extends Component {
     const data = new FormData();
     data.append('email', this.state.email);
     data.append('password', this.state.password);
-    const url= "http://192.168.43.229/ciDamkar/React/cek_login";
+    //const url= "http://192.168.43.229/ciDamkar/React/cek_login";
+    const url = ServerName.name+"React/cek_login";
     fetch(url, {
         method: 'post',
         body: data
@@ -73,14 +75,25 @@ class LoginView extends Component {
               <Input placeholder="Email" onChangeText={(email) => this.setState({email})} />
             </Item>
             <Item rounded style={styles.inputContainer}>
-              <Icon active name="key" secureTextEntry/>
-              <Input placeholder="Password" onChangeText={(password) => this.setState({password})} />
+              <Icon active name="key"/>
+              <Input secureTextEntry placeholder="Password" onChangeText={(password) => this.setState({password})} />
             </Item>
           </Form>
           <Button block info style={styles.masuk} onPress={() => this.cek_login()} rounded>
             <Text>Masuk</Text>
           </Button>
-          
+          <View
+              style={{
+                alignItems: "center",
+                marginBottom: 10,
+                backgroundColor: "transparent"
+              }}
+            >
+          </View>
+          <TouchableOpacity  style={styles.masuk}
+          onPress={() => this.props.navigation.navigate("DaftarView")}>
+             <Text>Daftar</Text>
+          </TouchableOpacity>
         </Content>
       </Container>
     );

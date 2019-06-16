@@ -20,6 +20,7 @@ import {
   Label
 } from "native-base";
 import styles from "./styles";
+import ServerName from "../../ServerName";
 import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
 
 
@@ -54,7 +55,9 @@ class Laporan extends Component {
         const kat = this.props.navigation.getParam('keterangan');
         AsyncStorage.getItem('id', (error, result) => {
           if (result) {
+           
             this.setState({ id: result, kategori: kat });
+            console.log(this.state.id);
           }
         });
         LocationServicesDialogBox.checkLocationServicesIsEnabled({
@@ -164,7 +167,8 @@ class Laporan extends Component {
           name: this.state.fileName,
         });
         console.log(data);
-        const url= "http://192.168.43.229/ciDamkar/React/laporan"
+        //const url= "http://192.168.43.229/ciDamkar/React/laporan"
+        const url = ServerName.name+"React/laporan";
         fetch(url, {
           method: 'post',
           body: data
