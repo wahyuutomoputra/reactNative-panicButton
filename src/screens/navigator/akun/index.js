@@ -58,12 +58,24 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage
 } from 'react-native';
+import { NavigationActions, StackActions  } from 'react-navigation';
 // cardImage = require("../../../../assets/me.jpg");
 const cardImage = require("../../../../assets/s.jpg");
 
 export default class Akun extends Component {
+
+  keluar(){
+    AsyncStorage.removeItem('id');
+    AsyncStorage.removeItem('email');
+    const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'SplashPage' })],
+    });
+    this.props.navigation.dispatch(resetAction);
+  }
 
   render() {
     return (
@@ -77,8 +89,20 @@ export default class Akun extends Component {
               <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text> */}
               
                         
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity style={styles.buttonContainer} onPress={() => this.props.navigation.navigate("EditView")}>
                 <Text>Edit akun</Text> 
+              </TouchableOpacity>
+
+              <View
+                  style={{
+                    alignItems: "center",
+                    marginBottom: 10,
+                    backgroundColor: "transparent"
+                  }}
+                >
+              </View>
+              <TouchableOpacity style={styles.buttonContainer} onPress={() => this.keluar()}>
+                <Text>Log Out</Text> 
               </TouchableOpacity>
             </View>
         </View>

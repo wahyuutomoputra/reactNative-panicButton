@@ -10,6 +10,7 @@ import Laporan from "./screens/laporan";
 import LoginView from "./screens/login";
 import DetailRiwayat from "./screens/detailRiwayat";
 import DaftarView from "./screens/daftar";
+import EditView from "./screens/edit";
 
 
 //import navigator
@@ -73,7 +74,8 @@ const AppNavigator = createStackNavigator(
     Laporan: { screen: Laporan },
     LoginView: { screen: LoginView },
     DetailRiwayat: { screen: DetailRiwayat },
-    DaftarView: { screen: DaftarView }
+    DaftarView: { screen: DaftarView },
+    EditView: { screen: EditView },
    
   },
   {
